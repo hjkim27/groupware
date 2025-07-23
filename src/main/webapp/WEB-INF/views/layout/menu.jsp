@@ -17,9 +17,11 @@
             <%--logo--%>
         </div>
         <div class="menu">
-            <div class="menu-item">menu1</div>
-            <div class="menu-item">menu2</div>
-            <div class="menu-item">menu3</div>
+            <div class="menu-item">업무관리</div>
+            <div class="menu-item">전자결재</div>
+            <div class="menu-item">연차/근태관리</div>
+            <div class="menu-item">자료실</div>
+            <div class="menu-item">공지사항</div>
         </div>
     </div>
     <div class="flex-item flex-item">
@@ -29,6 +31,8 @@
         <div class="menu">
             icon
             <%-- 마우수 hover 시 열리는 메뉴--%>
+            <%--내정보--%>
+            <%--로그아웃--%>
         </div>
     </div>
 </div>

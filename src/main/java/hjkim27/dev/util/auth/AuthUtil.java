@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpSession;
 
 public class AuthUtil {
 
-    private final String LOGIN_SESSION_ID = "USER_ID";
+    private final String LOGIN_SESSION_ID = "LOGIN_ID";
     private final String ADMIN_SESSION_ID = "ADMIN_ID";
 
     private static HttpSession getSession(HttpServletRequest request) {
@@ -51,7 +51,23 @@ public class AuthUtil {
      *     로그인
      * </pre>
      */
-    public void setLogin(HttpServletRequest request, Integer sid) {
+    public void setLogin(HttpServletRequest request, Integer sid, Boolean isAdmin) {
+        setValue(request, LOGIN_SESSION_ID, sid);
+        if (isAdmin) {
+            setAdmin(request, sid);
+        }
+    }
+
+    /**
+     * <pre>
+     *     관리자 확인
+     * </pre>
+     *
+     * @param request
+     * @param admin
+     */
+    public void setAdmin(HttpServletRequest request, Integer admin) {
+        setValue(request, ADMIN_SESSION_ID, admin);
     }
 
     /**
@@ -61,5 +77,9 @@ public class AuthUtil {
      */
     public void setLogout(HttpServletRequest request) {
         removeValue(request, LOGIN_SESSION_ID);
+        // 관리자 로그인일 경우 관리자 세션도 삭제
+        if (isAdmin(request)) {
+            removeValue(request, ADMIN_SESSION_ID);
+        }
     }
 }

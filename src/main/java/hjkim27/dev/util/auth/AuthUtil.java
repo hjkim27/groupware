@@ -5,8 +5,8 @@ import jakarta.servlet.http.HttpSession;
 
 public class AuthUtil {
 
-    private final String LOGIN_SESSION_ID = "LOGIN_ID";
-    private final String ADMIN_SESSION_ID = "ADMIN_ID";
+    private static final String LOGIN_SESSION_ID = "LOGIN_ID";
+    private static final String ADMIN_SESSION_ID = "ADMIN_ID";
 
     private static HttpSession getSession(HttpServletRequest request) {
         return request.getSession(true);
@@ -31,7 +31,7 @@ public class AuthUtil {
      *
      * @return
      */
-    public Boolean isLogin(HttpServletRequest request) {
+    public static Boolean isLogin(HttpServletRequest request) {
         return getValue(request, LOGIN_SESSION_ID) != null;
     }
 
@@ -42,7 +42,7 @@ public class AuthUtil {
      *
      * @return
      */
-    public Boolean isAdmin(HttpServletRequest request) {
+    public static Boolean isAdmin(HttpServletRequest request) {
         return getValue(request, ADMIN_SESSION_ID) != null;
     }
 
@@ -51,7 +51,7 @@ public class AuthUtil {
      *     로그인
      * </pre>
      */
-    public void setLogin(HttpServletRequest request, Integer sid, Boolean isAdmin) {
+    public static void setLogin(HttpServletRequest request, Integer sid, Boolean isAdmin) {
         setValue(request, LOGIN_SESSION_ID, sid);
         if (isAdmin) {
             setAdmin(request, sid);
@@ -66,7 +66,7 @@ public class AuthUtil {
      * @param request
      * @param admin
      */
-    public void setAdmin(HttpServletRequest request, Integer admin) {
+    public static void setAdmin(HttpServletRequest request, Integer admin) {
         setValue(request, ADMIN_SESSION_ID, admin);
     }
 
@@ -75,7 +75,7 @@ public class AuthUtil {
      *     로그아웃
      * </pre>
      */
-    public void setLogout(HttpServletRequest request) {
+    public static void setLogout(HttpServletRequest request) {
         removeValue(request, LOGIN_SESSION_ID);
         // 관리자 로그인일 경우 관리자 세션도 삭제
         if (isAdmin(request)) {

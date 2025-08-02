@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  *     interceptor settings
  * </pre>
  *
- * @since
+ * @since 2025.07
  */
 @Slf4j
 @Configuration

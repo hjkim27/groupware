@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  *     - 단순 변수만 갖고있도록 함. 실제 변수 설정은 {@link GeneralConfigInit}
  * </pre>
  *
- * @since 2025.03.31
+ * @since 2025.03
  */
 @Slf4j
 @Configuration

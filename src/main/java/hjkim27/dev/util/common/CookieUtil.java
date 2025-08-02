@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *     Cookie 관리 util class
  * </pre>
  *
- * @since 2025.07.26
+ * @since 2025.07
  */
 public class CookieUtil {
 

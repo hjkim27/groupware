@@ -20,7 +20,7 @@ public interface UserMapper {
 
     int update(UserDTO dto);
 
-    UserDTO login(UserDTO dto);
+    UserDTO loginCheck(UserDTO dto);
 
     UserDTO get(UserSearch search);
 

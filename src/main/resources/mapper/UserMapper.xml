@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hjkim27.dev.mapper.UserMapper">
+
+    <!--사용자 정보 조회 -->
+    <resultMap id="returnUser" type="hjkim27.dev.bean.user.UserDTO">
+        <result property="sid" column="sid"/>
+        <result property="loginId" column="login_id"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="birth" column="birth"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <!-- 로그인 결과 조회 -->
+    <resultMap id="login" type="hjkim27.dev.bean.user.UserDTO">
+        <result property="sid" column="sid"/>
+        <result property="loginId" column="login_id"/>
+        <result property="authLevel" column="auth_level"/>
+        <result property="lastPwUpdatedAt" column="last_pw_updated_at"/>
+    </resultMap>
+
+    <!-- 사용자 정보 추가 -->
+    <insert id="insert" parameterType="hjkim27.dev.bean.user.UserDTO"
+            keyProperty="sid" keyColumn="sid" useGeneratedKeys="true">
+        insert into tb_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            login_id, password,
+            <if test="name != null">name,</if>
+            <if test="email != null">email,</if>
+            <if test="birth != null">birth,</if>
+            <if test="authLevel != null">auth_level,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{loginId}, #{password},
+            <if test="name != null">#{name},</if>
+            <if test="email != null">#{email},</if>
+            <if test="birth != null">#{birth},</if>
+            <if test="authLevel != null">#{authLevel},</if>
+        </trim>
+    </insert>
+
+    <!-- 사용자 정보 업데이트 -->
+    <update id="update" parameterType="hjkim27.dev.bean.user.UserDTO">
+        update tb_user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="password != null">password = #{password},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="birth != null">birth = #{birth},</if>
+            <if test="authLevel != null">auth_level = #{authLevel},</if>
+        </trim>
+        where sid = #{sid}
+    </update>
+
+    <!-- 사용자 로그인 정보 확인 -->
+    <select id="loginCheck" parameterType="hjkim27.dev.bean.user.UserDTO" resultMap="login">
+        select sid, login_id, auth_level, last_pw_updated_at
+        from tb_user
+        where login_id = #{loginId}
+          and password = #{password}
+    </select>
+
+    <!-- 사용자 조회 -->
+    <select id="get" resultMap="returnUser" parameterType="hjkim27.dev.bean.user.UserSearch">
+        select
+        sid, login_id, auth_level, last_pw_updated_at
+        , email, birth,created_at
+        from tb_user
+        <include refid="search"/>
+        limit 1
+    </select>
+
+    <!-- 사용자 목록 조회 -->
+    <select id="getAll" resultMap="returnUser" parameterType="hjkim27.dev.bean.user.UserSearch">
+        select sid, login_id, auth_level, email, birth, created_at, updated_at
+        from tb_user
+        <include refid="search"/>
+        <include refid="orderBy"/>
+        <if test="usePaging">
+            limit #{limit} offset #{offset}
+        </if>
+    </select>
+
+    <!-- 사용자 전체 수 -->
+    <select id="getCount" resultType="int" parameterType="hjkim27.dev.bean.user.UserSearch">
+        select count(*) from tb_user
+        <include refid="search"/>
+    </select>
+
+    <sql id="search">
+        <trim prefix="where" prefixOverrides="and">
+            <if test="searchValue != null and searchValue != ''">
+                <choose>
+                    <when test="searchKey == 'loginId'">and login_id ilike '%'||#{searchValue}||'%'</when>
+                    <when test="searchKey == 'email'">and email ilike '%'||#{searchValue}||'%'</when>
+                </choose>
+            </if>
+            <if test="authLevels.size() > 0">
+                and auth_level = any(#{authLevels,typeHandler=hjkim27.dev.handler.IntegerListTypeHandler})
+            </if>
+            <if test="sid != 0">and sid = #{sid}</if>
+            <!-- 날짜 검색 -->
+            <if test="dateColumnIdx != -1">
+                <choose>
+                    <when test="dateColumnIdx == 1">created_at &gt;= #{startDate} and created_at &lt;= #{endDate}</when>
+                    <when test="dateColumnIdx == 2">updated_at &gt;= #{startDate} and updated_at &lt;= #{endDate}</when>
+                </choose>
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="orderBy">
+        <trim suffix="order by">
+            <choose>
+                <when test="columnIdx == 2">login_id</when>
+                <when test="columnIdx == 3">name</when>
+                <when test="columnIdx == 4">email</when>
+                <when test="columnIdx == 5">auth_level</when>
+                <when test="columnIdx == 6">created_at</when>
+                <when test="columnIdx == 7">updated_at</when>
+                <otherwise>sid</otherwise>
+            </choose>
+            <if test="desc">desc</if>
+        </trim>
+    </sql>
+</mapper>

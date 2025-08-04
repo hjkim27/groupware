@@ -65,8 +65,8 @@ public class UserService {
      * @param user
      * @return
      */
-    public UserResponseLogin login(UserRequestLogin user) {
-        UserDTO dto = userMapper.login(dtoMapper.toDto(user));
+    public UserResponseLogin loginCheck(UserRequestLogin user) {
+        UserDTO dto = userMapper.loginCheck(dtoMapper.toDto(user));
         if (dto != null) {
             UserResponseLogin responseLogin = dtoMapper.toResponseLogin(dto);
             responseLogin.setKeepLogin(user.getKeepLogin());    // 로그인 유지여부

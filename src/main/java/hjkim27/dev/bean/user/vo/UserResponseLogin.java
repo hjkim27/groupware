@@ -2,7 +2,7 @@ package hjkim27.dev.bean.user.vo;
 
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * <pre>
@@ -21,6 +21,7 @@ public class UserResponseLogin {
     private Integer sid;        // 일련번호
     private String loginId;     // 로그인아이디
     private Integer authLevel;  // 권한 정보
-    private Date lastPwUpdatedAt;   // 마지막 비밀번호 변경일자 (비밀번호 변경 알림용)
+    private LocalDateTime lastPwUpdatedAt;   // 마지막 비밀번호 변경일자 (비밀번호 변경 알림용)
+    private Boolean keepLogin;               // 로그인 유지여부. 사용자 로그인 시 전달받은 값
 
 }

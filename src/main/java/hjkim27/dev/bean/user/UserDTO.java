@@ -2,7 +2,7 @@ package hjkim27.dev.bean.user;
 
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * <pre>
@@ -25,8 +25,8 @@ public class UserDTO {
     private String email;
     private String birth;
     private Integer authLevel;
-    private Date createdAt;
-    private Date updatedAt;
-    private Date lastPwUpdatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private LocalDateTime lastPwUpdatedAt;
 
 }

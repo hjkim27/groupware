@@ -2,6 +2,8 @@ package hjkim27.dev.bean.common;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 /**
  * <pre>
  *     기본 검색 객체
@@ -31,6 +33,10 @@ public class DefaultSearch {
     private Boolean usePaging = true;
 
     private Integer sid;        // sid 검색
+
+    private String dateColumnIdx;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     public int getLimit() {
         return pageSize;

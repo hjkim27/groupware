@@ -34,7 +34,7 @@ public class DefaultSearch {
 
     private Integer sid;        // sid 검색
 
-    private String dateColumnIdx;
+    private Integer dateColumnIdx = -1;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 

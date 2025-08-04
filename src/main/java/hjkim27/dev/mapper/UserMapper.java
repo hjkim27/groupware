@@ -1,10 +1,18 @@
 package hjkim27.dev.mapper;
 
-import hjkim27.dev.bean.dto.UserDTO;
+import hjkim27.dev.bean.user.UserDTO;
+import hjkim27.dev.bean.user.UserSearch;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+/**
+ * <pre>
+ *     사용자 관련 dto <-> vo
+ * </pre>
+ *
+ * @since 2025.08
+ */
 @Mapper
 public interface UserMapper {
 
@@ -12,10 +20,12 @@ public interface UserMapper {
 
     int update(UserDTO dto);
 
-    UserDTO get();
+    UserDTO login(UserDTO dto);
 
-    List<UserDTO> getAll();
+    UserDTO get(UserSearch search);
 
-    int getCount();
+    List<UserDTO> getAll(UserSearch search);
+
+    int getCount(UserSearch search);
 
 }

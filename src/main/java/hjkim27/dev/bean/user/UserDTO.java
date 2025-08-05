@@ -24,6 +24,9 @@ public class UserDTO {
     private String name;
     private String email;
     private String birth;
+    private String phone;
+    private String position;
+    private Integer groupSid;
     private Integer authLevel;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

@@ -55,11 +55,13 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 
             registry.addInterceptor(new LoginInterceptor())
                     .addPathPatterns(LOGIN_PATTERNS)
+                    .addPathPatterns("/")
                     .excludePathPatterns(RESOURCE_PATTERNS)
                     .excludePathPatterns(NO_LOGIN_PATTERNS);
 
             registry.addInterceptor(new AdminInterceptor())
                     .addPathPatterns(ADMIN_PATTERNS)
+                    .addPathPatterns("/")
                     .excludePathPatterns(RESOURCE_PATTERNS)
                     .excludePathPatterns(NO_LOGIN_PATTERNS);
 

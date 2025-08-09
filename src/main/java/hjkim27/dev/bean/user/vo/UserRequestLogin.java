@@ -18,6 +18,6 @@ public class UserRequestLogin {
 
     private String loginId;     // 로그인 아이디
     private String password;    // 비밀번호
-    private Boolean keepLogin;  // 로그인 유지여부
+    private Boolean keepLogin = false;  // 로그인 유지여부
 
 }

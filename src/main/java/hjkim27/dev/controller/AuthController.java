@@ -1,15 +1,14 @@
 package hjkim27.dev.controller;
 
+import hjkim27.dev.util.auth.AuthUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * <pre>
@@ -19,6 +18,7 @@ import java.util.Map;
 @Slf4j
 @Controller
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
     private final String VIEW_FOLDER = "auth/";
@@ -32,7 +32,7 @@ public class AuthController {
      * @return
      */
     @RequestMapping("/login")
-    public ModelAndView login(HttpServletRequest request) {
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
         log.info("[{}] {}", request.getMethod(), request.getRequestURI());
 
         ModelAndView mav = new ModelAndView(VIEW_FOLDER + "login/user");
@@ -48,7 +48,7 @@ public class AuthController {
      * @return
      */
     @RequestMapping("/admin/login")
-    public ModelAndView loginAdmin(HttpServletRequest request) {
+    public ModelAndView loginAdmin(HttpServletRequest request, HttpServletResponse response) {
         log.info("[{}] {}", request.getMethod(), request.getRequestURI());
 
         ModelAndView mav = new ModelAndView(VIEW_FOLDER + "login/admin");
@@ -57,28 +57,24 @@ public class AuthController {
 
     /**
      * <pre>
-     *     로그인 동작
+     *     로그아웃
      * </pre>
      *
      * @param request
+     * @param response
      * @return
      */
-    @ResponseBody
-    @RequestMapping(value = {"/login", "/admin/login"}, method = RequestMethod.POST)
-    public Map<String, Object> loginPost(HttpServletRequest request) {
+    @RequestMapping(value = {"/logout", "/admin/logout"})
+    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
         log.info("[{}] {}", request.getMethod(), request.getRequestURI());
 
-        Map<String, Object> map = new HashMap<String, Object>();
-        int status = 0;
-        String message = "";
         try {
-            // todo 로그인 확인 로직
-            //      @modelAttribute 로 bean 추가
-            //      해당 bean 에서 admin 일 경우 admin 로그인 확인으로 동작
+            boolean isAdmin = request.getRequestURI().contains("admin");
+            AuthUtil.setLogout(request, response, isAdmin);
         } catch (Exception e) {
             log.error(e.getMessage());
         }
-        return map;
-    }
 
+        return new ModelAndView(new RedirectView(request.getContextPath() + "/auth/login"));
+    }
 }

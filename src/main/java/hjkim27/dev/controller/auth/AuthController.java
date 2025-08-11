@@ -1,9 +1,13 @@
-package hjkim27.dev.controller;
+package hjkim27.dev.controller.auth;
 
 import hjkim27.dev.bean.user.vo.UserRequestLogin;
 import hjkim27.dev.bean.user.vo.UserResponseLogin;
+import hjkim27.dev.enumeration.MessageEnum;
+import hjkim27.dev.exception.ClientException;
+import hjkim27.dev.exception.WrongParamException;
 import hjkim27.dev.service.UserService;
 import hjkim27.dev.util.auth.AuthUtil;
+import hjkim27.dev.util.common.ValidParamUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +51,9 @@ public class AuthController {
         log.info("[{}] {}", request.getMethod(), request.getRequestURI());
 
         ModelAndView mav = new ModelAndView(VIEW_FOLDER + "login/user");
+        if (AuthUtil.isLogin(request)) {
+            // todo 메인페이지로
+        }
         return mav;
     }
 
@@ -63,6 +70,9 @@ public class AuthController {
         log.info("[{}] {}", request.getMethod(), request.getRequestURI());
 
         ModelAndView mav = new ModelAndView(VIEW_FOLDER + "login/admin");
+        if (AuthUtil.isAdmin(request)) {
+            // todo 관리자 메인 페이지로
+        }
         return mav;
     }
 
@@ -106,18 +116,31 @@ public class AuthController {
         log.info("[{}] {}", request.getMethod(), request.getRequestURI());
 
         Map<String, Object> map = new HashMap<String, Object>();
-        int status = 0;
-        String message = "";
+        MessageEnum messageEnum = null;
+
         try {
-            // todo 로그인 확인 로직
+            // 필수 정보 입력 확인
+            if (!ValidParamUtil.isValidParam(info)) {
+                messageEnum = MessageEnum.INVALID_PARAMETER;
+                throw new WrongParamException(messageEnum.getMessage());
+            }
+            // 로그인 정보 확인
             UserResponseLogin responseLogin = userService.loginCheck(info);
             if (responseLogin == null) {
-                throw new Exception("사용자 정보 없음");
+                messageEnum = MessageEnum.USER_NOT_FOUND;
+                throw new ClientException(messageEnum.getMessage());
             }
+            // 로그인 성공
             AuthUtil.setLogin(request, response, responseLogin);
+            messageEnum = MessageEnum.SUCCESS;
 
         } catch (Exception e) {
             log.error(e.getMessage());
+        } finally {
+            if (messageEnum == null) {
+                messageEnum = MessageEnum.INVALID_AUTHENTICATION;
+            }
+            map.putAll(messageEnum.getMessageInfo());
         }
         return map;
     }

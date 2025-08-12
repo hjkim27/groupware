@@ -1,5 +1,6 @@
 package hjkim27.dev.controller.auth;
 
+import hjkim27.dev.bean.user.vo.UserRequestFindInfo;
 import hjkim27.dev.bean.user.vo.UserRequestLogin;
 import hjkim27.dev.bean.user.vo.UserResponseLogin;
 import hjkim27.dev.enumeration.MessageEnum;
@@ -46,7 +47,7 @@ public class AuthRestController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Map<String, Object> loginPost(
             HttpServletRequest request, HttpServletResponse response,
             @ModelAttribute UserRequestLogin info
@@ -83,5 +84,36 @@ public class AuthRestController {
         return map;
     }
 
+    /**
+     * <pre>
+     *     계정 정보 찾기
+     * </pre>
+     *
+     * @param request
+     * @param response
+     * @param info
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/find/information", method = RequestMethod.POST)
+    public Map<String, Object> findInformation(
+            HttpServletRequest request, HttpServletResponse response,
+            @ModelAttribute UserRequestFindInfo info) {
+        log.info("[{}] {}", request.getMethod(), request.getRequestURI());
+
+        Map<String, Object> map = new HashMap<>();
+        MessageEnum messageEnum = null;
+        try {
+
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        } finally {
+            if (messageEnum == null) {
+                messageEnum = MessageEnum.INVALID_AUTHENTICATION;
+            }
+            map.putAll(messageEnum.getMessageInfo());
+        }
+        return map;
+    }
 
 }

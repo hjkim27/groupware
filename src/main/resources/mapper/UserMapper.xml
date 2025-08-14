@@ -21,6 +21,15 @@
         <result property="lastPwUpdatedAt" column="last_pw_updated_at"/>
     </resultMap>
 
+    <!-- 계정 정보 찾기 -->
+    <resultMap id="findInfo" type="hjkim27.dev.bean.user.UserDTO">
+        <result property="sid" column="sid"/>
+        <result property="loginId" column="login_id"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <!-- ====================================================================== -->
+
     <!-- 사용자 정보 추가 -->
     <insert id="insert" parameterType="hjkim27.dev.bean.user.UserDTO"
             keyProperty="sid" keyColumn="sid" useGeneratedKeys="true">
@@ -99,6 +108,16 @@
         select count(*) from tb_user
         <include refid="search"/>
     </select>
+
+    <!-- 계정 정보 찾기 -->
+    <select id="getForFindInformation" resultMap="findInfo"
+            parameterType="hjkim27.dev.bean.user.vo.UserRequestFindInfo">
+        select sid, login_id, email from tb_user
+        where name = #{name} and email = #{email}
+        <if test="findPassword == true">and login_id = #{loginId}</if>
+    </select>
+
+    <!-- ====================================================================== -->
 
     <sql id="search">
         <trim prefix="where" prefixOverrides="and">

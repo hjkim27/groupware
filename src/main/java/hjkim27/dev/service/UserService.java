@@ -116,4 +116,17 @@ public class UserService {
     public int getCount(UserSearch search) {
         return userMapper.getCount(search);
     }
+
+    /**
+     * <pre>
+     *     계정 정보 찾기
+     * </pre>
+     *
+     * @param user
+     * @return
+     */
+    public UserResponse getForFindInformation(UserRequestFindInfo user) {
+        UserDTO dto = userMapper.getForFindInformation(user);
+        return (dto == null) ? null : dtoMapper.toResponse(dto);
+    }
 }

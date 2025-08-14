@@ -9,6 +9,13 @@ import lombok.*;
 @NoArgsConstructor
 public class UserRequestFindInfo {
 
-    private String type;    // login-id, password
+    private Boolean findPassword = false;
+
+    /* 필수 입력 값 */
+    private String name;    // 이름
     private String email;   // 이메일
+
+    /* type 이 password 일 경우 필수 값 */
+    private String loginId; // 로그인 아이디
+
 }

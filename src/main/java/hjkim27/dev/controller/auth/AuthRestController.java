@@ -2,6 +2,7 @@ package hjkim27.dev.controller.auth;
 
 import hjkim27.dev.bean.user.vo.UserRequestFindInfo;
 import hjkim27.dev.bean.user.vo.UserRequestLogin;
+import hjkim27.dev.bean.user.vo.UserResponse;
 import hjkim27.dev.bean.user.vo.UserResponseLogin;
 import hjkim27.dev.enumeration.MessageEnum;
 import hjkim27.dev.exception.ClientException;
@@ -104,6 +105,36 @@ public class AuthRestController {
         Map<String, Object> map = new HashMap<>();
         MessageEnum messageEnum = null;
         try {
+            String excludeField = null;
+            // loginId 찾기일 경우 loginId 필드 제외
+            if (info.getFindPassword()) {
+                excludeField = "loginId";
+            }
+
+            // 필수 정보 입력 확인
+            if (!ValidParamUtil.isValidParam(info, excludeField)) {
+                messageEnum = MessageEnum.INVALID_PARAMETER;
+                throw new WrongParamException(messageEnum.getMessage());
+            }
+            /*
+                사용자 정보 조회
+                - 아이디찾기 : 이름, 이메일
+                - 비밀번호찾기 : 이름, 이메일, 로그인아이디
+             */
+            UserResponse userResponse = userService.getForFindInformation(info);
+            if (userResponse == null) {
+                messageEnum = MessageEnum.USER_NOT_FOUND;
+                throw new ClientException(messageEnum.getMessage());
+            }
+
+            // 정보가 있을 경우
+            if (info.getFindPassword()) {
+                // todo 이메일 발송
+            } else {
+                // 아이디 일부 반환
+                String loginId = userResponse.getLoginId();
+                map.put("loginId", loginId.substring(0, 3) + "****");
+            }
 
         } catch (Exception e) {
             log.error(e.getMessage());

@@ -3,6 +3,8 @@ package hjkim27.dev.util.common;
 import hjkim27.dev.exception.WrongParamException;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,7 +26,21 @@ public class ValidParamUtil {
      * @return
      */
     public static boolean isValidParam(Object obj) {
-        return isValidParam(obj, null);
+        return isValidParam(obj, Collections.emptyList());
+    }
+
+    /**
+     * <pre>
+     *     객체 내 모든 필드가 null 또는 "" 인지 검사
+     *     ignoreFields에 포함된 필드는 검사하지 않음
+     * </pre>
+     *
+     * @param obj
+     * @param ignoreFields
+     * @return
+     */
+    public static boolean isValidParam(Object obj, String... ignoreFields) {
+        return isValidParam(obj, Arrays.asList(ignoreFields));
     }
 
     /**

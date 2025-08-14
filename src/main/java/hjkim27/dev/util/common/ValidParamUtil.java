@@ -3,6 +3,7 @@ package hjkim27.dev.util.common;
 import hjkim27.dev.exception.WrongParamException;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 /**
  * <pre>
@@ -16,15 +17,29 @@ public class ValidParamUtil {
     /**
      * <pre>
      *     객체 내 모든 필드가 null 또는 "" 인지 검사
-     *     - Boolean, Integer : null 체크
-     *     - String : null, empty 체크
+     *     - 제외필드 없음
      * </pre>
      *
-     * @param obj 검사할 객체
-     * @return 모든 필드 값 존재: true, 빈 필드가 존재 false
-     * @since 2025.08
+     * @param obj
+     * @return
      */
     public static boolean isValidParam(Object obj) {
+        return isValidParam(obj, null);
+    }
+
+    /**
+     * <pre>
+     *     객체 내 모든 필드가 null 또는 "" 인지 검사
+     *     - Boolean, Integer : null 체크
+     *     - String : null, empty 체크
+     *     - ignoreFields에 포함된 필드는 검사하지 않음
+     * </pre>
+     *
+     * @param obj          검사할 객체
+     * @param ignoreFields 필수값이 아닌 경우 제외하기 위한 필드 목록
+     * @return 모든 필드 값 존재: true, 빈 필드가 존재 false
+     */
+    public static boolean isValidParam(Object obj, List<String> ignoreFields) {
         if (obj == null) {
             return false;
         }
@@ -34,11 +49,19 @@ public class ValidParamUtil {
             for (Field field : fields) {
                 field.setAccessible(true);
                 Object value = field.get(obj);
-                if (value == null) {
-                    return false;
+
+                // ignoreFields에 포함된 필드는 검사하지 않음
+                boolean isIgnored = false;
+                if (ignoreFields != null && !ignoreFields.isEmpty()) {
+                    if (ignoreFields.contains(field.getName())) {
+                        isIgnored = true;
+                    }
                 }
-                if (value instanceof String && String.valueOf(value).trim().isEmpty()) {
-                    return false;
+
+                if (!isIgnored) {
+                    if (value == null || (value instanceof String && String.valueOf(value).trim().isEmpty())) {
+                        return false;
+                    }
                 }
             }
         } catch (IllegalAccessException e) {

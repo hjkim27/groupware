@@ -15,8 +15,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 로그인 여부 확인 로직 추가
-        // 사용자일 경우 : isLogin / 관리자일 경우 isAdmin
-        if (AuthUtil.isLogin(request) || AuthUtil.isAdmin(request)) {
+        if (AuthUtil.isLogin(request)) {
             return true; // 로그인된 경우 true 반환
         }
 

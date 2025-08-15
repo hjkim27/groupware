@@ -41,7 +41,7 @@ public class AuthUtil {
      * </pre>
      */
     public static void setLogin(HttpServletRequest request, HttpServletResponse response, UserResponseLogin info) {
-        setLogin(request, response, info, false);
+        setLogin(request, response, info, info.getAuthLevel() == 1); // 1: 관리자, 0: 사용자
     }
 
     /**
@@ -55,8 +55,10 @@ public class AuthUtil {
      * @param isAdmin
      */
     public static void setLogin(HttpServletRequest request, HttpServletResponse response, UserResponseLogin info, boolean isAdmin) {
-        String key = (isAdmin) ? ADMIN_LOGIN_SESSION_ID : USER_LOGIN_SESSION_ID;
-        SessionUtil.setValue(request, key, info);
+        SessionUtil.setValue(request, USER_LOGIN_SESSION_ID, info);
+        if (isAdmin) {
+            SessionUtil.setValue(request, ADMIN_LOGIN_SESSION_ID, info);
+        }
 
         // 로그인 유지 설정
         if (info.getKeepLogin()) {
@@ -70,9 +72,10 @@ public class AuthUtil {
      * </pre>
      */
     public static void setLogout(HttpServletRequest request, HttpServletResponse response, boolean isAdmin) {
-        String key = (isAdmin) ? ADMIN_LOGIN_SESSION_ID : USER_LOGIN_SESSION_ID;
-        SessionUtil.removeValue(request, key);
-
+        SessionUtil.removeValue(request, USER_LOGIN_SESSION_ID);
+        if (isAdmin) {
+            SessionUtil.removeValue(request, ADMIN_LOGIN_SESSION_ID);
+        }
         CookieUtil.deleteCookie(response, KEEP_LOGIN_COOKIE_ID);
 
     }

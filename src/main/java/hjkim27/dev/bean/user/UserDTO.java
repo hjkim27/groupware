@@ -30,6 +30,6 @@ public class UserDTO {
     private Integer authLevel;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private LocalDateTime lastPwUpdatedAt;
+    private LocalDateTime passwordExpiredAt;
 
 }

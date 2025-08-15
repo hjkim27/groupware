@@ -18,7 +18,7 @@
         <result property="sid" column="sid"/>
         <result property="loginId" column="login_id"/>
         <result property="authLevel" column="auth_level"/>
-        <result property="lastPwUpdatedAt" column="last_pw_updated_at"/>
+        <result property="passwordExpiredAt" column="password_expired_at"/>
     </resultMap>
 
     <!-- 계정 정보 찾기 -->
@@ -72,7 +72,7 @@
 
     <!-- 사용자 로그인 정보 확인 -->
     <select id="loginCheck" parameterType="hjkim27.dev.bean.user.UserDTO" resultMap="login">
-        select sid, login_id, auth_level, last_pw_updated_at
+        select sid, login_id, auth_level, password_expired_at
         from tb_user
         where login_id = #{loginId}
           and password = #{password}

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,6 +74,18 @@ public class AuthRestController {
             // 로그인 성공
             AuthUtil.setLogin(request, response, responseLogin);
             messageEnum = MessageEnum.SUCCESS;
+
+            // 비밀번호 만료 확인
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime passwordExpiredAt = responseLogin.getPasswordExpiredAt();
+            if (passwordExpiredAt != null && now.isAfter(passwordExpiredAt)) {
+                // 비밀번호 만료 시 비밀번호 변경 페이지로 리다이렉트
+                map.put("redirectUrl", "/auth/change/password");
+                messageEnum = MessageEnum.SUCCESS;
+            } else {
+                // 비밀번호가 유효한 경우 메인 페이지로 리다이렉트
+                map.put("redirectUrl", "/");
+            }
 
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -128,10 +141,12 @@ public class AuthRestController {
             }
 
             // 정보가 있을 경우
+            // 비밀번호 찾기
             if (info.getFindPassword()) {
-                // todo 이메일 발송
-            } else {
-                // 아이디 일부 반환
+                // todo 이메일 발송 - html 페이지 작업 후 전달 필요
+            }
+            // 아이디 찾기 - 아이디 일부 반환
+            else {
                 String loginId = userResponse.getLoginId();
                 map.put("loginId", loginId.substring(0, 3) + "****");
             }

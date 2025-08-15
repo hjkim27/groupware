@@ -112,4 +112,25 @@ public class AuthController {
         return mav;
     }
 
+    /**
+     * <pre>
+     *     비밀번호 변경 페이지
+     *     - 비밀번호 만료 시
+     * </pre>
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("/change/password")
+    public ModelAndView changePassword(HttpServletRequest request, HttpServletResponse response) {
+        log.info("[{}] {}", request.getMethod(), request.getRequestURI());
+        ModelAndView mav = new ModelAndView(VIEW_FOLDER + "/change/password");
+        // 비밀번호 만료 시에만 접근 가능
+        if (!AuthUtil.isPasswordExpired(request)) {
+            mav = new ModelAndView(new RedirectView(request.getContextPath() + "/auth/login"));
+            mav.addObject("message", MessageEnum.INVALID_AUTHENTICATION.getMessageInfo());
+        }
+        return mav;
+    }
 }

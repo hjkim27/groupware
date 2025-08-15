@@ -7,7 +7,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
  * <pre>
- *     로그인 여부 확인 interceptor
+ *     사용자 로그인 여부 확인 interceptor
  * </pre>
  */
 public class LoginInterceptor implements HandlerInterceptor {

@@ -7,7 +7,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
  * <pre>
- *     관리자 권한 확인을 위한 interceptor
+ *     관리자 로그인 여부 확인을 위한 interceptor
  *     - 관리자 권한이 필요한 요청에 대해 접근을 제어
  * </pre>
  */

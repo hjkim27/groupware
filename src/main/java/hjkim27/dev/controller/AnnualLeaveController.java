@@ -2,9 +2,9 @@ package hjkim27.dev.controller;
 
 /**
  * <pre>
- *     근태 관리
+ *     연차 관리
  * </pre>
  */
-public class AttendanceController {
+public class AnnualLeaveController {
 
 }

@@ -2,9 +2,9 @@ package hjkim27.dev.controller;
 
 /**
  * <pre>
- *     자료실
+ *     메신저
  * </pre>
  */
-public class ReferenceController {
+public class ChatController {
 
 }

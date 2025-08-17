@@ -2,9 +2,9 @@ package hjkim27.dev.controller;
 
 /**
  * <pre>
- *     근태 관리
+ *     자료실
  * </pre>
  */
-public class AttendanceController {
+public class DocumentController {
 
 }

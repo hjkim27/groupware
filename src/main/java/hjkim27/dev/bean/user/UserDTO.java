@@ -27,6 +27,7 @@ public class UserDTO {
     private String phone;
     private String position;
     private Integer groupSid;
+    private Integer role;
     private Integer authLevel;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

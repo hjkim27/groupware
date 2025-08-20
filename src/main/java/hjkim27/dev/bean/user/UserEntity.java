@@ -49,6 +49,9 @@ public class UserEntity {
     @Column(nullable = true)
     private Integer groupSid;
 
+    @Column(nullable = false)
+    private Integer role;
+
     @Column(nullable = true)
     private Integer authLevel;
 
@@ -65,6 +68,9 @@ public class UserEntity {
     public void prePersist() {
         if (this.createdAt == null) {
             this.createdAt = LocalDateTime.now();
+        }
+        if (this.role == null) {
+            this.role = 0; // 기본 역할을 0으로 설정 (일반 사용자)
         }
     }
 

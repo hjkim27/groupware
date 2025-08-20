@@ -20,7 +20,7 @@ public class UserResponseLogin {
 
     private Integer sid;        // 일련번호
     private String loginId;     // 로그인아이디
-    private Integer role;       // 역할 (0: 일반 사용자, 1: 관리자, 2: 서브 관리자)
+    private String role;       // 역할 (admin, user)
     private Integer authLevel;  // 권한 정보
     private LocalDateTime passwordExpiredAt;   // 마지막 비밀번호 변경일자 (비밀번호 변경 알림용)
     private Boolean keepLogin;               // 로그인 유지여부. 사용자 로그인 시 전달받은 값

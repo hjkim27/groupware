@@ -24,7 +24,7 @@ public class UserRequestCreate {
     private String phone;       // 전화번호
     private String position;    // 직급
     private Integer groupSid;   // 그룹 sid
-    private Integer role;       // 역할 (0: 일반 사용자, 1: 관리자, 2: 서브 관리자)
+    private String role;        // 역할 (admin, user)
     private Integer authLevel;  // 권한 수준
 
 }

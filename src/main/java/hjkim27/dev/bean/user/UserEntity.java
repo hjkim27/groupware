@@ -21,46 +21,60 @@ import java.time.LocalDateTime;
 @Table(name = "tb_user")
 public class UserEntity {
 
+    // 사용자 고유 ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sid;
 
+    // 로그인 아이디
     @Column(nullable = false, updatable = false)
     private String loginId;
 
+    // 비밀번호
     @Column(nullable = false)
     private String password;
 
+    // 이름
     @Column(nullable = true)
     private String name;
 
+    // 이메일
     @Column(nullable = true)
     private String email;
 
+    // 생년월일
     @Column(nullable = true)
     private String birth;
 
+    // 전화번호
     @Column(nullable = true)
     private String phone;
 
+    // 직급
     @Column(nullable = true)
     private String position;
 
+    // 부서 sid
     @Column(nullable = true)
     private Integer groupSid;
 
+    // 역할(admin,user)
     @Column(nullable = false)
-    private Integer role;
+    private String role;
 
+    // 권한 수준(관리자일 경우)
     @Column(nullable = true)
     private Integer authLevel;
 
+    // 생성일자
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    // 수정일자
     @Column(nullable = true)
     private LocalDateTime updatedAt;
 
+    // 비밀번호 만료일자
     @Column(nullable = true)
     private LocalDateTime passwordExpiredAt;
 
@@ -70,7 +84,7 @@ public class UserEntity {
             this.createdAt = LocalDateTime.now();
         }
         if (this.role == null) {
-            this.role = 0; // 기본 역할을 0으로 설정 (일반 사용자)
+            this.role = "user"; // 기본역할=사용자
         }
     }
 

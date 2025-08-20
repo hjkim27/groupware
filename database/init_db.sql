@@ -13,7 +13,7 @@ create table tb_user
     phone               character varying,
     position            character varying,
     group_sid           integer,
-    role                integer,
+    role                character varying,
     auth_level          integer                  default 0,
     created_at          timestamp with time zone default now(),
     updated_at          timestamp with time zone,
@@ -29,7 +29,7 @@ comment on column tb_user.birth is '생년월일';
 comment on column tb_user.phone is '전화번호';
 comment on column tb_user.position is '직급';
 comment on column tb_user.group_sid is '그룹 sid';
-comment on column tb_user.role is '역할(관리자, 서브관리자, 사용자)';
+comment on column tb_user.role is '역할(admin, user)';
 comment on column tb_user.auth_level is '권한수준';
 comment on column tb_user.created_at is '생성일자';
 comment on column tb_user.updated_at is '수정일자';

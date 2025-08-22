@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UserResponseLogin {
 
-    private Integer sid;        // 일련번호
+    private Long sid;        // 일련번호
     private String loginId;     // 로그인아이디
     private String role;       // 역할 (admin, user)
     private Integer authLevel;  // 권한 정보

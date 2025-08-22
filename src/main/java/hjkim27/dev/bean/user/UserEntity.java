@@ -56,7 +56,7 @@ public class UserEntity {
 
     // 부서 sid
     @Column(nullable = true)
-    private Integer groupSid;
+    private Long groupSid;
 
     // 역할(admin,user)
     @Column(nullable = false)

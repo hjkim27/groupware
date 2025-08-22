@@ -33,6 +33,7 @@ public class DefaultSearch {
     private Boolean usePaging = true;
 
     private Integer sid;        // sid 검색
+    private Long sid;        // sid 검색
 
     private Integer dateColumnIdx = -1;
     private LocalDateTime startDate;

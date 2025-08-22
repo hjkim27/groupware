@@ -23,7 +23,7 @@ public class UserRequestCreate {
     private String birth;       // 생년월일
     private String phone;       // 전화번호
     private String position;    // 직급
-    private Integer groupSid;   // 그룹 sid
+    private Long groupSid;   // 그룹 sid
     private String role;        // 역할 (admin, user)
     private Integer authLevel;  // 권한 수준
 

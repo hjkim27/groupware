@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UserDTO {
 
-    private Integer sid;
+    private Long sid;
     private String loginId;
     private String password;
     private String name;
@@ -26,7 +26,7 @@ public class UserDTO {
     private String birth;
     private String phone;
     private String position;
-    private Integer groupSid;
+    private Long groupSid;
     private String role;
     private Integer authLevel;
     private LocalDateTime createdAt;

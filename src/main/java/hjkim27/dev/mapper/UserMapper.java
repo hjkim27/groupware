@@ -21,8 +21,6 @@ public interface UserMapper {
 
     int update(UserDTO dto);
 
-    UserDTO loginCheck(UserDTO dto);
-
     UserDTO get(UserSearch search);
 
     List<UserDTO> getAll(UserSearch search);

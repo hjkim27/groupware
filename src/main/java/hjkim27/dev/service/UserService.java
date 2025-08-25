@@ -74,14 +74,11 @@ public class UserService {
      * @return
      */
     public UserResponseLogin loginCheck(UserRequestLogin user) {
-        UserDTO dto = userMapper.loginCheck(structMapper.toDto(user));
-        if (dto != null) {
-            UserResponseLogin responseLogin = structMapper.toResponseLogin(dto);
-            responseLogin.setKeepLogin(user.getKeepLogin());    // 로그인 유지여부
-            return responseLogin;
-        } else {
-            return null;
-        }
+        return userRepository.findByLoginIdAndPassword(user.getLoginId(), user.getPassword())
+                .map(responseLogin -> {
+                    responseLogin.setKeepLogin(user.getKeepLogin());
+                    return responseLogin;
+                }).orElse(null);
     }
 
     /**

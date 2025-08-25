@@ -1,7 +1,6 @@
 package hjkim27.dev.service;
 
 import hjkim27.dev.bean.user.UserDTO;
-import hjkim27.dev.bean.user.UserEntity;
 import hjkim27.dev.bean.user.UserSearch;
 import hjkim27.dev.bean.user.vo.*;
 import hjkim27.dev.mapper.UserMapper;
@@ -45,8 +44,12 @@ public class UserService {
      */
     public int insert(UserRequestCreate user) {
 //        return userMapper.insert(structMapper.toDto(user));
-        UserEntity entity = userRepository.save(structMapper.toEntity(user));
-        return (entity != null) ? 1 : 0; // JPA save returns the saved entity or null if it fails
+        try {
+            userRepository.save(structMapper.toEntity(user));
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     /**
@@ -134,4 +137,39 @@ public class UserService {
         UserDTO dto = userMapper.getForFindInformation(user);
         return (dto == null) ? null : structMapper.toResponse(dto);
     }
+
+
+    /**
+     * <pre>
+     *     계정 일괄 삭제
+     * </pre>
+     *
+     * @param sidList 삭제 대상 사용자 sid
+     * @return
+     */
+    public int delete(List<Long> sidList) {
+        int result = 0;
+        for (Long sid : sidList) {
+            result += deleteBySid(sid);
+        }
+        return result;
+    }
+
+    /**
+     * <pre>
+     *     사용자 개별 삭제
+     * </pre>
+     *
+     * @param sid
+     * @return
+     */
+    public int deleteBySid(Long sid) {
+        try {
+            userRepository.deleteById(sid);
+            return 1;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
 }

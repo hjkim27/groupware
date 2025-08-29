@@ -89,13 +89,13 @@ comment on column tb_task.updated_at is '수정일자';
 -- Created      2025.08.21
 -- Description  tag
 ----------------------------------------------------------
-create table tb_table
+create table tb_tag
 (
     sid serial,
     tag_name character varying not null,
     tag_type character varying
 )
 
-comment on column tb_table.sid is '일련번호';
-comment on column tb_table.tag_name is '태그명';
-comment on column tb_table.tag_type is '태그 타입';
+comment on column tb_tag.sid is '일련번호';
+comment on column tb_tag.tag_name is '태그명';
+comment on column tb_tag.tag_type is '태그 타입';

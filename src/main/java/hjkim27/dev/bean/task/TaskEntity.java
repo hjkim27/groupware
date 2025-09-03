@@ -1,6 +1,6 @@
 package hjkim27.dev.bean.task;
 
-import hjkim27.dev.enumeration.TaskStatusEnum;
+import hjkim27.dev.enumeration.ApprovalStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -48,13 +48,18 @@ public class TaskEntity {
     @Column(nullable = true)
     private LocalDateTime dueDate;
 
+    //생성자 sid
+    @Column(nullable = false)
+    private Integer createdUserSid;
+
     // 담당자 sid
     @Column(nullable = true)
-    private List<Integer> assignedUserSid;
+    private List<Integer> assignedUserSids;
 
-    //생성자 sid
+    // 글을 확인한 담당자 sid
     @Column(nullable = true)
-    private Integer createdUserSid;
+    private List<Integer> viewUserSids;
+
 
     // 태그 sid
     @Column(nullable = true)
@@ -64,25 +69,17 @@ public class TaskEntity {
     @Column(nullable = true)
     private Integer groupSid;
 
-    // 종료일
-    @Column(nullable = true)
-    private LocalDateTime createdDate;
-
     // 시작일
     @Column(nullable = true)
-    private LocalDateTime endDate;
+    private LocalDateTime startDate;
 
-    // 삭제여부
+    // 종료일
     @Column(nullable = true)
-    private Boolean isDeleted;
+    private LocalDateTime endDate;
 
     // 아카이브여부
     @Column(nullable = true)
     private Boolean isArchived;
-
-    // 완료여부
-    @Column(nullable = true)
-    private Boolean isCompleted;
 
     // 중요여부
     @Column(nullable = true)
@@ -96,23 +93,21 @@ public class TaskEntity {
     @Column(nullable = true)
     private LocalDateTime updatedAt;
 
+    // 삭제일자
+    @Column(nullable = true)
+    private LocalDateTime deletedAt;
+
 
     @PrePersist
     public void prePersist() {
         if (this.status == null) {
-            status = TaskStatusEnum.none.getStatus();
+            status = ApprovalStatusEnum.none.getStatus();
         }
         if (this.priority == null) {
             priority = 1;
         }
-        if (this.isDeleted == null) {
-            isDeleted = false;
-        }
         if (this.isArchived == null) {
             isArchived = false;
-        }
-        if (this.isCompleted == null) {
-            isCompleted = false;
         }
         if (this.isImportant == null) {
             isImportant = false;
@@ -125,9 +120,5 @@ public class TaskEntity {
     @PreUpdate
     public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
-        // 완료상태로 변경 시 종료일 수정
-        if (this.isCompleted) {
-            this.endDate = LocalDateTime.now();
-        }
     }
 }

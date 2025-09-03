@@ -43,24 +43,24 @@ comment on column tb_user.password_expired_at is '비밀번호 만료일자';
 ----------------------------------------------------------
 create table tb_task
 (
-    sid               serial,
-    title             character varying not null,
-    description       text,
-    status            integer                  default 0,
-    priority          integer                  default 1,
-    due_date          timestamp with time zone,
-    assigned_user_sid integer[],
-    created_user_sid  integer,
-    tag_sids          integer[],
-    group_sid         integer,
-    start_date        timestamp with time zone,
-    end_date          timestamp with time zone,
-    is_deleted        boolean                  default false,
-    is_archived       boolean                  default false,
-    is_completed      boolean                  default false,
-    is_important      boolean                  default false,
-    created_at        timestamp with time zone default now(),
-    updated_at        timestamp with time zone
+    sid                serial,
+    title              character varying not null,
+    description        text,
+    status             integer                  default 0,
+    priority           integer                  default 1,
+    due_date           timestamp with time zone,
+    created_user_sid   integer,
+    assigned_user_sids integer[],
+    view_user_sids     integer[],
+    tag_sids           integer[],
+    group_sid          integer,
+    start_date         timestamp with time zone,
+    end_date           timestamp with time zone,
+    is_archived        boolean                  default false,
+    is_important       boolean                  default false,
+    created_at         timestamp with time zone default now(),
+    updated_at         timestamp with time zone,
+    deleted_at         timestamp with time zone
 );
 
 comment on column tb_task.sid is '일련번호';
@@ -69,18 +69,18 @@ comment on column tb_task.description is '업무설명';
 comment on column tb_task.status is '업무상태(TaskStatusEnum 참고)';
 comment on column tb_task.priority is '우선순위(0:low, 1:normal, 2:high)';
 comment on column tb_task.due_date is '마감일';
-comment on column tb_task.assigned_user_sid is '담당자 sid';
 comment on column tb_task.created_user_sid is '생성자 sid';
+comment on column tb_task.assigned_user_sids is '담당자 sid';
+comment on column tb_task.view_user_sids is '글을 확인한 담당자 sid';
 comment on column tb_task.tag_sids is '태그 sid';
 comment on column tb_task.group_sid is '그룹 sid';
 comment on column tb_task.start_date is '시작일';
 comment on column tb_task.end_date is '종료일';
-comment on column tb_task.is_deleted is '삭제 여부';
 comment on column tb_task.is_archived is '아카이브 여부';
-comment on column tb_task.is_completed is '완료 여부';
 comment on column tb_task.is_important is '중요 여부';
 comment on column tb_task.created_at is '생성일자';
 comment on column tb_task.updated_at is '수정일자';
+comment on column tb_task.deleted_at is '삭제일자';
 
 
 ----------------------------------------------------------

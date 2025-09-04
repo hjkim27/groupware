@@ -23,7 +23,7 @@ public class UserResponse extends UserResponseLogin {
     private String birth;       // 생년월일
     private String phone;       // 전화번호
     private String position;    // 직급
-    private Long groupSid;   // 그룹 sid
+    private Long groupSid;      // 그룹 sid
     private LocalDateTime createdAt;     // 생성일자
     private LocalDateTime updatedAt;     // 수정일자
 

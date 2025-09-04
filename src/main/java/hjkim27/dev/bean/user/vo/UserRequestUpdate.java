@@ -17,14 +17,14 @@ import lombok.*;
 @AllArgsConstructor
 public class UserRequestUpdate {
 
-    private Long sid;        // 일련번호
+    private Long sid;           // 일련번호
     private String password;    // 새비밀번호(입력 시)
     private String name;        // 이름
     private String email;       // 이메일
     private String birth;       // 생년월일
     private String phone;       // 전화번호
     private String position;    // 직급
-    private Long groupSid;   // 그룹 sid
+    private Long groupSid;      // 그룹 sid
     private Integer authLevel;  // 권한 수준
 
 }

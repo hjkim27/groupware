@@ -15,7 +15,7 @@ import lombok.*;
 @NoArgsConstructor
 public class TagData {
 
-    private Long sid;          // 태그 고유 ID
+    private Long sid;         // 태그 고유 ID
     private String tagName;   // 태그 이름
     private String tagType;   // 태그 구분
 

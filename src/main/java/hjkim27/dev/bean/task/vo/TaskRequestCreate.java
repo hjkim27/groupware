@@ -1,0 +1,36 @@
+package hjkim27.dev.bean.task.vo;
+
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+/**
+ * <pre>
+ *     업무 생성
+ * </pre>
+ *
+ * @since 2025.09
+ */
+@Getter
+@Setter
+@ToString(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+public class TaskRequestCreate {
+
+    private Long sid;
+    private String title;
+    private String description;
+
+    private Integer priority;
+    private LocalDateTime dueDate;
+    private Integer createdUserSid;
+    private List<Integer> assignedUserSid;
+
+    private List<Integer> tagSid;
+    private Integer groupSid;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+
+}

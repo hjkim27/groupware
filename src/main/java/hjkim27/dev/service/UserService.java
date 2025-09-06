@@ -43,7 +43,6 @@ public class UserService {
      * @return
      */
     public int insert(UserRequestCreate user) {
-//        return userMapper.insert(structMapper.toDto(user));
         try {
             userRepository.save(structMapper.toEntity(user));
             return 1;

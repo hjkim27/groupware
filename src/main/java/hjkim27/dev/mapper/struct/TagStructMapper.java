@@ -17,8 +17,10 @@ public interface TagStructMapper {
 
     TagStructMapper INSTANCE = Mappers.getMapper(TagStructMapper.class);
 
+    /* vo <-> dto ================================================== */
     TagData toData(TagEntity entity);
 
+    /* vo <-> Entity =============================================== */
     TagEntity toEntity(TagData dto);
 
 }

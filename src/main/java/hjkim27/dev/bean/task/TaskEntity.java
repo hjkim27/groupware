@@ -1,6 +1,6 @@
 package hjkim27.dev.bean.task;
 
-import hjkim27.dev.enumeration.ApprovalStatusEnum;
+import hjkim27.dev.enumeration.TaskStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -60,7 +60,6 @@ public class TaskEntity {
     @Column(nullable = true)
     private List<Integer> viewUserSids;
 
-
     // 태그 sid
     @Column(nullable = true)
     private List<Integer> tagSids;
@@ -101,7 +100,7 @@ public class TaskEntity {
     @PrePersist
     public void prePersist() {
         if (this.status == null) {
-            status = ApprovalStatusEnum.none.getStatus();
+            status = TaskStatusEnum.none.getStatus();
         }
         if (this.priority == null) {
             priority = 1;

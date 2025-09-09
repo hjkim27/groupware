@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * <pre>
- *     업무 생성
+ *     업무 생성/수정
  * </pre>
  *
  * @since 2025.09
@@ -17,15 +17,15 @@ import java.util.List;
 @ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskRequestCreate {
+public class TaskRequest {
 
-    private Long sid;
+    private Long sid;               // 수정불가
     private String title;
     private String description;
 
     private Integer priority;
     private LocalDateTime dueDate;
-    private Integer createdUserSid;
+    private Integer createdUserSid; // 수정불가
     private List<Integer> assignedUserSid;
 
     private List<Integer> tagSid;

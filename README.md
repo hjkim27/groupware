@@ -130,16 +130,17 @@ Google OTP
 
 ---
 
-## ※ ERD (간단 예시)
+## ※ ERD
 
-- **User** (id, name, email, password, role, dept, position, otp_secret …)
-- **Approval** (id, title, status, writer_id, approver_id, …)
-- **AnnualLeave** (id, user_id, start_date, end_date, status)
-- **Attendance** (id, user_id, date, type, status)
-- **Document** (id, title, type, file_url, uploader_id)
-- **Notice** (id, title, content, writer_id, created_at)
-- **ChatRoom** (id, name, type)
-- **ChatMessage** (id, room_id, sender_id, content, created_at)
+- **User**: 사용자 정보 (sid, login_id, password, name, email, birth, phone, position, group_sid, role, auth_level, created_at, updated_at, password_expired_at)
+- **Task**: 업무 관리 (id, title, description, status, assignee_id 등)
+- **Approval**: 전자결재 문서 (id, title, status, writer_id, approver_id 등)
+- **AnnualLeave**: 연차 신청 (id, user_id, start_date, end_date, status)
+- **Attendance**: 근태 기록 (id, user_id, date, type, status)
+- **Document**: 자료실 문서 (id, title, type, file_url, uploader_id)
+- **Notice**: 공지사항 (id, title, content, writer_id, created_at)
+- **ChatRoom**: 채팅방 (id, name, type)
+- **ChatMessage**: 채팅 메시지 (id, room_id, sender_id, content, created_at)
 
 ---
 

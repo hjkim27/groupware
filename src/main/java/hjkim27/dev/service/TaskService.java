@@ -5,7 +5,7 @@ import hjkim27.dev.bean.task.TaskDTO;
 import hjkim27.dev.bean.task.TaskSearch;
 import hjkim27.dev.bean.task.vo.TaskRequest;
 import hjkim27.dev.bean.task.vo.TaskResponse;
-import hjkim27.dev.mapper.TaskMapper;
+import hjkim27.dev.mapper.mybatis.TaskMapper;
 import hjkim27.dev.mapper.struct.TaskStructMapper;
 import hjkim27.dev.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;

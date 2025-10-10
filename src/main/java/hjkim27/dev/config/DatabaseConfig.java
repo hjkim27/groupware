@@ -25,7 +25,7 @@ import java.util.List;
 
 @Slf4j
 @SpringBootConfiguration
-@MapperScan(value = "hjkim27.dev.mapper")
+@MapperScan(value = "hjkim27.dev.mapper.mybatis")
 public class DatabaseConfig {
 
     @Autowired

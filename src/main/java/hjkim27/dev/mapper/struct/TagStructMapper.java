@@ -3,7 +3,6 @@ package hjkim27.dev.mapper.struct;
 import hjkim27.dev.bean.tag.TagEntity;
 import hjkim27.dev.bean.tag.vo.TagData;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 /**
  * <pre>
@@ -12,10 +11,8 @@ import org.mapstruct.factory.Mappers;
  *
  * @since 2025.08
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public interface TagStructMapper {
-
-    TagStructMapper INSTANCE = Mappers.getMapper(TagStructMapper.class);
 
     /* vo <-> dto ================================================== */
     TagData toData(TagEntity entity);

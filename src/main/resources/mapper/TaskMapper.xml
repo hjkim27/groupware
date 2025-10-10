@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="hjkim27.dev.mapper.TaskMapper">
+<mapper namespace="hjkim27.dev.mapper.mybatis.TaskMapper">
 
     <!--사용자 정보 조회 -->
     <resultMap id="returnUser" type="hjkim27.dev.bean.user.UserDTO">

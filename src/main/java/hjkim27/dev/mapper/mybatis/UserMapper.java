@@ -1,4 +1,4 @@
-package hjkim27.dev.mapper;
+package hjkim27.dev.mapper.mybatis;
 
 import hjkim27.dev.bean.user.UserDTO;
 import hjkim27.dev.bean.user.UserSearch;

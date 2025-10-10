@@ -3,7 +3,7 @@ package hjkim27.dev.service;
 import hjkim27.dev.bean.user.UserDTO;
 import hjkim27.dev.bean.user.UserSearch;
 import hjkim27.dev.bean.user.vo.*;
-import hjkim27.dev.mapper.UserMapper;
+import hjkim27.dev.mapper.mybatis.UserMapper;
 import hjkim27.dev.mapper.struct.UserStructMapper;
 import hjkim27.dev.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

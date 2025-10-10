@@ -5,12 +5,9 @@ import hjkim27.dev.bean.task.TaskEntity;
 import hjkim27.dev.bean.task.vo.TaskRequest;
 import hjkim27.dev.bean.task.vo.TaskResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface TaskStructMapper {
-
-    TaskStructMapper INSTANCE = Mappers.getMapper(TaskStructMapper.class);
 
     /* vo <-> dto ================================================== */
 

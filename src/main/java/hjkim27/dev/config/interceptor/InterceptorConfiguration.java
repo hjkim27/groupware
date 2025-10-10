@@ -35,6 +35,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
     };
 
     public static final String[] NO_LOGIN_PATTERNS = {
+            "/auth/**",
             "/sign/**",
             "/home/**",
             "/sse/**"

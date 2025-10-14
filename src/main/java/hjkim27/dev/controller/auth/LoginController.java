@@ -13,10 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -48,32 +45,23 @@ public class LoginController {
      * </pre>
      *
      * @param request
+     * @param response
+     * @param type     user:사용자(default), admin:관리자
      * @return
      */
-    @RequestMapping("/login")
-    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping("/login/{type}")
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response,
+                              @PathVariable(name = "type", value = "user") String type) {
         log.info("[{}] {}", request.getMethod(), request.getRequestURI());
-        ModelAndView mav = new ModelAndView(VIEW_FOLDER + "/login/user");
+
+        String viewName = VIEW_FOLDER + "/login/";
+        viewName += ("admin".equals(type)) ? "admin" : "user";
+
+        ModelAndView mav = new ModelAndView(viewName);
+
+        // cookie확인 > cookie 가 있을 경우 자동 로그인 처리
         if (AuthUtil.isLogin(request)) {
             // todo 메인페이지로
-        }
-        return mav;
-    }
-
-    /**
-     * <pre>
-     *     관리자 로그인 페이지
-     * </pre>
-     *
-     * @param request
-     * @return
-     */
-    @RequestMapping("/admin/login")
-    public ModelAndView loginAdmin(HttpServletRequest request, HttpServletResponse response) {
-        log.info("[{}] {}", request.getMethod(), request.getRequestURI());
-        ModelAndView mav = new ModelAndView(VIEW_FOLDER + "/login/admin");
-        if (AuthUtil.isAdmin(request)) {
-            // todo 관리자 메인 페이지로
         }
         return mav;
     }

@@ -1,4 +1,4 @@
-package hjkim27.dev.bean.task.vo;
+package hjkim27.dev.bean.data.task;
 
 import hjkim27.dev.enumeration.ApprovalStatusEnum;
 import lombok.*;

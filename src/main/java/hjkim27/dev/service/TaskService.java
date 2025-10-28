@@ -1,10 +1,10 @@
 package hjkim27.dev.service;
 
 
-import hjkim27.dev.bean.task.TaskDTO;
-import hjkim27.dev.bean.task.TaskSearch;
-import hjkim27.dev.bean.task.vo.TaskRequest;
-import hjkim27.dev.bean.task.vo.TaskResponse;
+import hjkim27.dev.bean.dto.TaskDTO;
+import hjkim27.dev.bean.search.TaskSearch;
+import hjkim27.dev.bean.data.task.TaskRequest;
+import hjkim27.dev.bean.data.task.TaskResponse;
 import hjkim27.dev.mapper.mybatis.TaskMapper;
 import hjkim27.dev.mapper.struct.TaskStructMapper;
 import hjkim27.dev.repository.TaskRepository;

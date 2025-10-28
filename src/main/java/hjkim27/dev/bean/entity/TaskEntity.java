@@ -1,4 +1,4 @@
-package hjkim27.dev.bean.task;
+package hjkim27.dev.bean.entity;
 
 import hjkim27.dev.enumeration.TaskStatusEnum;
 import jakarta.persistence.*;

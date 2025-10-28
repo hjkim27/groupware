@@ -1,7 +1,7 @@
 package hjkim27.dev.controller.auth;
 
-import hjkim27.dev.bean.user.vo.UserRequestLogin;
-import hjkim27.dev.bean.user.vo.UserResponseLogin;
+import hjkim27.dev.bean.data.user.UserRequestLogin;
+import hjkim27.dev.bean.data.user.UserResponseLogin;
 import hjkim27.dev.enumeration.MessageEnum;
 import hjkim27.dev.exception.ClientException;
 import hjkim27.dev.exception.WrongParamException;

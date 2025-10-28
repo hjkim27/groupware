@@ -1,6 +1,5 @@
-package hjkim27.dev.bean.user;
+package hjkim27.dev.bean.search;
 
-import hjkim27.dev.bean.common.DefaultSearch;
 import lombok.*;
 
 import java.util.ArrayList;

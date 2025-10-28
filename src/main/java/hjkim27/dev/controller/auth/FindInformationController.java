@@ -1,7 +1,7 @@
 package hjkim27.dev.controller.auth;
 
-import hjkim27.dev.bean.user.vo.UserRequestFindInfo;
-import hjkim27.dev.bean.user.vo.UserResponse;
+import hjkim27.dev.bean.data.user.UserRequestFindInfo;
+import hjkim27.dev.bean.data.user.UserResponse;
 import hjkim27.dev.enumeration.MessageEnum;
 import hjkim27.dev.exception.ClientException;
 import hjkim27.dev.exception.WrongParamException;

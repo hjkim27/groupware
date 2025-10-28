@@ -1,7 +1,7 @@
 package hjkim27.dev.mapper.struct;
 
-import hjkim27.dev.bean.tag.TagEntity;
-import hjkim27.dev.bean.tag.vo.TagData;
+import hjkim27.dev.bean.entity.TagEntity;
+import hjkim27.dev.bean.data.tag.TagData;
 import org.mapstruct.Mapper;
 
 /**

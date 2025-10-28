@@ -1,8 +1,8 @@
 package hjkim27.dev.service;
 
-import hjkim27.dev.bean.common.DefaultSearch;
-import hjkim27.dev.bean.tag.TagEntity;
-import hjkim27.dev.bean.tag.vo.TagData;
+import hjkim27.dev.bean.search.DefaultSearch;
+import hjkim27.dev.bean.entity.TagEntity;
+import hjkim27.dev.bean.data.tag.TagData;
 import hjkim27.dev.mapper.struct.TagStructMapper;
 import hjkim27.dev.repository.TagRepository;
 import lombok.RequiredArgsConstructor;

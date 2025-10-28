@@ -1,6 +1,6 @@
 package hjkim27.dev.enumeration;
 
-import hjkim27.dev.bean.task.TaskEntity;
+import hjkim27.dev.bean.entity.TaskEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

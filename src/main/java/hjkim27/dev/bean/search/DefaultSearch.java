@@ -1,4 +1,4 @@
-package hjkim27.dev.bean.common;
+package hjkim27.dev.bean.search;
 
 import lombok.*;
 

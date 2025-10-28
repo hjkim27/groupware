@@ -1,8 +1,8 @@
 package hjkim27.dev.mapper.mybatis;
 
-import hjkim27.dev.bean.user.UserDTO;
-import hjkim27.dev.bean.user.UserSearch;
-import hjkim27.dev.bean.user.vo.UserRequestFindInfo;
+import hjkim27.dev.bean.data.user.UserRequestFindInfo;
+import hjkim27.dev.bean.dto.UserDTO;
+import hjkim27.dev.bean.search.UserSearch;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

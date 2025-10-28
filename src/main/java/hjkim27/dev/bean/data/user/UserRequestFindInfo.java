@@ -1,4 +1,4 @@
-package hjkim27.dev.bean.user.vo;
+package hjkim27.dev.bean.data.user;
 
 import lombok.*;
 

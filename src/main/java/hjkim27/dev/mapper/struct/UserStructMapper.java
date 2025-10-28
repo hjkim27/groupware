@@ -1,10 +1,10 @@
 package hjkim27.dev.mapper.struct;
 
-import hjkim27.dev.bean.user.UserDTO;
-import hjkim27.dev.bean.user.UserEntity;
-import hjkim27.dev.bean.user.vo.UserRequestCreate;
-import hjkim27.dev.bean.user.vo.UserRequestUpdate;
-import hjkim27.dev.bean.user.vo.UserResponse;
+import hjkim27.dev.bean.data.user.UserRequestCreate;
+import hjkim27.dev.bean.data.user.UserRequestUpdate;
+import hjkim27.dev.bean.data.user.UserResponse;
+import hjkim27.dev.bean.dto.UserDTO;
+import hjkim27.dev.bean.entity.UserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

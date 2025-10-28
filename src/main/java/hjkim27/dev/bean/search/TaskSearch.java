@@ -1,6 +1,5 @@
-package hjkim27.dev.bean.task;
+package hjkim27.dev.bean.search;
 
-import hjkim27.dev.bean.common.DefaultSearch;
 import lombok.*;
 
 @Getter
@@ -10,4 +9,5 @@ import lombok.*;
 @AllArgsConstructor
 public class TaskSearch extends DefaultSearch {
 
+    private String key;
 }

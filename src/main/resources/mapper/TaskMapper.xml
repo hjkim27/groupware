@@ -3,7 +3,7 @@
 <mapper namespace="hjkim27.dev.mapper.mybatis.TaskMapper">
 
     <!--사용자 정보 조회 -->
-    <resultMap id="returnUser" type="hjkim27.dev.bean.user.UserDTO">
+    <resultMap id="returnUser" type="hjkim27.dev.bean.dto.UserDTO">
         <result property="sid" column="sid"/>
         <result property="loginId" column="login_id"/>
         <result property="password" column="password"/>
@@ -14,7 +14,7 @@
     </resultMap>
 
     <!-- 계정 정보 찾기 -->
-    <resultMap id="findInfo" type="hjkim27.dev.bean.user.UserDTO">
+    <resultMap id="findInfo" type="hjkim27.dev.bean.dto.UserDTO">
         <result property="sid" column="sid"/>
         <result property="loginId" column="login_id"/>
         <result property="email" column="email"/>
@@ -23,7 +23,7 @@
     <!-- ====================================================================== -->
 
     <!-- 사용자 정보 업데이트 -->
-    <update id="update" parameterType="hjkim27.dev.bean.task.TaskDTO">
+    <update id="update" parameterType="hjkim27.dev.bean.dto.TaskDTO">
         update tb_task
         <trim prefix="set" suffixOverrides=",">
             <if test="title != null">title = #{title},</if>
@@ -44,7 +44,7 @@
 
     <!-- 사용자 조회 -->
     <!--todo 그룹sid 로 그룹명 조회하도록 수정 필요 + 그룹테이블 join -->
-    <select id="get" resultMap="returnUser" parameterType="hjkim27.dev.bean.user.UserSearch">
+    <select id="get" resultMap="returnUser" parameterType="hjkim27.dev.bean.search.UserSearch">
         select
         sid, title, description, status, priority,
         due_date, created_user_sid, assigned_user_sid, view_user_sids
@@ -55,7 +55,7 @@
 
     <!-- 사용자 목록 조회 -->
     <!--todo 그룹sid 로 그룹명 조회하도록 수정 필요 + 그룹테이블 join -->
-    <select id="getAll" resultMap="returnUser" parameterType="hjkim27.dev.bean.user.UserSearch">
+    <select id="getAll" resultMap="returnUser" parameterType="hjkim27.dev.bean.search.UserSearch">
         select
         sid, title, status, priority, due_date, created_user_sid, assigned_user_sid
         from tb_task
@@ -67,7 +67,7 @@
     </select>
 
     <!-- 사용자 전체 수 -->
-    <select id="getCount" resultType="int" parameterType="hjkim27.dev.bean.user.UserSearch">
+    <select id="getCount" resultType="int" parameterType="hjkim27.dev.bean.search.UserSearch">
         select count(*) from tb_task
         <include refid="search"/>
     </select>

@@ -1,4 +1,4 @@
-package hjkim27.dev.bean.tag.vo;
+package hjkim27.dev.bean.data.tag;
 
 import lombok.*;
 

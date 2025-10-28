@@ -1,6 +1,6 @@
 package hjkim27.dev.util.auth;
 
-import hjkim27.dev.bean.user.vo.UserResponseLogin;
+import hjkim27.dev.bean.data.user.UserResponseLogin;
 import hjkim27.dev.util.common.CookieUtil;
 import hjkim27.dev.util.common.SessionUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -57,7 +57,7 @@ public class AuthUtil {
      * @param request
      * @return
      */
-    public static int getSid(HttpServletRequest request) {
+    public static Long getSid(HttpServletRequest request) {
         return getInfo(request).getSid();
     }
 

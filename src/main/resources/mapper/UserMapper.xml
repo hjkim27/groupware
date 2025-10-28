@@ -3,7 +3,7 @@
 <mapper namespace="hjkim27.dev.mapper.mybatis.UserMapper">
 
     <!--사용자 정보 조회 -->
-    <resultMap id="returnUser" type="hjkim27.dev.bean.user.UserDTO">
+    <resultMap id="returnUser" type="hjkim27.dev.bean.dto.UserDTO">
         <result property="sid" column="sid"/>
         <result property="loginId" column="login_id"/>
         <result property="password" column="password"/>
@@ -14,7 +14,7 @@
     </resultMap>
 
     <!-- 계정 정보 찾기 -->
-    <resultMap id="findInfo" type="hjkim27.dev.bean.user.UserDTO">
+    <resultMap id="findInfo" type="hjkim27.dev.bean.dto.UserDTO">
         <result property="sid" column="sid"/>
         <result property="loginId" column="login_id"/>
         <result property="email" column="email"/>
@@ -23,7 +23,7 @@
     <!-- ====================================================================== -->
 
     <!-- 사용자 정보 추가 -->
-    <insert id="insert" parameterType="hjkim27.dev.bean.user.UserDTO"
+    <insert id="insert" parameterType="hjkim27.dev.bean.dto.UserDTO"
             keyProperty="sid" keyColumn="sid" useGeneratedKeys="true">
         insert into tb_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -47,7 +47,7 @@
     </insert>
 
     <!-- 사용자 정보 업데이트 -->
-    <update id="update" parameterType="hjkim27.dev.bean.user.UserDTO">
+    <update id="update" parameterType="hjkim27.dev.bean.dto.UserDTO">
         update tb_user
         <trim prefix="set" suffixOverrides=",">
             <if test="password != null">password = #{password},</if>
@@ -64,7 +64,7 @@
 
     <!-- 사용자 조회 -->
     <!--todo 그룹sid 로 그룹명 조회하도록 수정 필요 + 그룹테이블 join -->
-    <select id="get" resultMap="returnUser" parameterType="hjkim27.dev.bean.user.UserSearch">
+    <select id="get" resultMap="returnUser" parameterType="hjkim27.dev.bean.search.UserSearch">
         select
         sid, login_id, auth_level,
         name, email, birth, phone, position, group_sid, created_at
@@ -75,7 +75,7 @@
 
     <!-- 사용자 목록 조회 -->
     <!--todo 그룹sid 로 그룹명 조회하도록 수정 필요 + 그룹테이블 join -->
-    <select id="getAll" resultMap="returnUser" parameterType="hjkim27.dev.bean.user.UserSearch">
+    <select id="getAll" resultMap="returnUser" parameterType="hjkim27.dev.bean.search.UserSearch">
         select
         sid, login_id, auth_level,
         name, email, phone, group_sid, created_at, updated_at
@@ -88,14 +88,14 @@
     </select>
 
     <!-- 사용자 전체 수 -->
-    <select id="getCount" resultType="int" parameterType="hjkim27.dev.bean.user.UserSearch">
+    <select id="getCount" resultType="int" parameterType="hjkim27.dev.bean.search.UserSearch">
         select count(*) from tb_user
         <include refid="search"/>
     </select>
 
     <!-- 계정 정보 찾기 -->
     <select id="getForFindInformation" resultMap="findInfo"
-            parameterType="hjkim27.dev.bean.user.vo.UserRequestFindInfo">
+            parameterType="hjkim27.dev.bean.data.user.UserRequestFindInfo">
         select sid, login_id, email from tb_user
         where name = #{name} and email = #{email}
         <if test="findPassword == true">and login_id = #{loginId}</if>

@@ -1,6 +1,6 @@
 package hjkim27.dev.controller;
 
-import hjkim27.dev.bean.common.DefaultSearch;
+import hjkim27.dev.bean.search.DefaultSearch;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

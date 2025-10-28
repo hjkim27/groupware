@@ -1,6 +1,6 @@
 package hjkim27.dev.repository;
 
-import hjkim27.dev.bean.tag.TagEntity;
+import hjkim27.dev.bean.entity.TagEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Collection;

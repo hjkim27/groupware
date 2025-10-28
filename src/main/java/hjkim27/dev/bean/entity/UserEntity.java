@@ -1,4 +1,4 @@
-package hjkim27.dev.bean.user;
+package hjkim27.dev.bean.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

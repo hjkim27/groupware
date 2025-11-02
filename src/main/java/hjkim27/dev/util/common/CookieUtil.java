@@ -30,17 +30,23 @@ public class CookieUtil {
         return getCookie(request, name) != null;
     }
 
-    public static String getCookie(HttpServletRequest request, String name) {
+    public static Cookie getCookie(HttpServletRequest request, String name) {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals(name)) {
-                    return cookie.getValue();
+                    return cookie;
                 }
             }
         }
         return null;
     }
+
+    public static String getCookieValue(HttpServletRequest request, String name) {
+        Cookie cookie = getCookie(request, name);
+        return (cookie != null) ? cookie.getValue() : null;
+    }
+
 
     public static void deleteCookie(HttpServletResponse response, String name) {
         Cookie cookie = new Cookie(name, null);

@@ -1,4 +1,4 @@
-package hjkim27.dev.config.interceptor;
+package hjkim27.dev.config.interceptor.value;
 
 import hjkim27.dev.config.GeneralConfig;
 import jakarta.servlet.http.HttpServletRequest;

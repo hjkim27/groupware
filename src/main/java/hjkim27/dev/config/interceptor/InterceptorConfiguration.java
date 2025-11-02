@@ -1,8 +1,14 @@
 package hjkim27.dev.config.interceptor;
 
+import hjkim27.dev.config.interceptor.value.CommonLocaleInterceptor;
+import hjkim27.dev.config.interceptor.value.CommonValueResolver;
+import hjkim27.dev.config.interceptor.value.CookieValueResolver;
+import hjkim27.dev.config.interceptor.value.GlobalAttributeInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanInitializationException;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -75,6 +81,12 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
             log.error("INIT FAIL : addInterceptors() >> {} ||", e.getMessage(), e);
             throw new BeanInitializationException("INIT FAIL : addInterceptors()");
         }
+    }
+
+    @Bean
+    @Primary
+    public CommonValueResolver commonValueResolver() {
+        return new CookieValueResolver();
     }
 
 
